@@ -1,0 +1,11 @@
+.dropdown-content {
+    display: none;
+    padding: 10px;
+    background-color: #fff;
+    position: absolute;
+    z-index: 1000;
+}
+.dropdown-toggle:focus + .dropdown-content,
+.dropdown-toggle:click + .dropdown-content {
+    display: block;
+}
