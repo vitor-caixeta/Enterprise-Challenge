@@ -1,0 +1,9 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    color: #333; 
+}
+
+.text-mini{
+    font-size: 0.72rem; 
+    line-height: 0.75rem;
+}
