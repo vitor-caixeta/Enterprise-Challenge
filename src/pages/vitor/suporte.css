@@ -1,0 +1,36 @@
+body {
+    background-color: lightgray;
+    font-family: Arial, sans-serif;
+}
+
+.card {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: none;
+}
+
+.card-title {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-top: 20px;
+}
+
+.card-text {
+    font-size: 0.95rem;
+    color: #6c757d;
+}
+
+
+/* Responsividade para ícones em telas pequenas */
+@media (max-width: 768px) {
+    .icon-large {
+        font-size: 40px; /* Tamanho menor para telas médias e pequenas */
+    }
+}
+
+@media (max-width: 576px) {
+    .icon-large {
+        font-size: 30px; /* Ícones menores em dispositivos muito pequenos */
+    }
+}

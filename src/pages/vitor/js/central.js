@@ -23,3 +23,15 @@ function toggleTab(element) {
     // Adiciona a classe 'active' ao elemento clicado
     element.classList.add('active');
 }
+
+function toggleTab(element) {
+    var tab = element.getAttribute('data-tab');
+    
+    // Hide the iframe by default
+    document.getElementById('supportIframeContainer').style.display = 'none';
+
+    if (tab === 'suporte') {
+        // Show iframe when "Suporte" tab is clicked
+        document.getElementById('supportIframeContainer').style.display = 'block';
+    }
+}

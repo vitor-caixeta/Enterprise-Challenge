@@ -69,7 +69,7 @@
         <h1 class="text-center w-full mr-8 md:mr-0 text-lg md:text-4xl font-semibold">Central de Ajuda</h1>
     </div> 
 </header>
-   
+
 <body>
     <main>
         <!-- options -->
@@ -77,20 +77,26 @@
             <!-- titles -->
             <div class="tabs-container mt-10">
                 <span class="tab faq" data-tab="faq" onclick="toggleTab(this)">FAQ</span>
+                
                 <span class="tab support" data-tab="suporte" onclick="toggleTab(this)">Suporte</span>
             </div>
         
+            <div id="supportIframeContainer" style="display: none; margin-top: 20px;">
+                <iframe src="suporte.html" style="width: 100%; height: 500px;" frameborder="0"></iframe>
+            </div>
+
             <!-- buttons -->
             <div class="flex justify-center items-center mt-10 lg:mt-20">                
                 <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                     <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
                     <label class="btn btn-outline-secondary px-4" for="btnradio1">Geral</label>
-                  
+                
                     <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
                     <label class="btn btn-outline-secondary px-4" for="btnradio2">Conta</label>
-                  
+                
                     <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
                     <label class="btn btn-outline-secondary px-4" for="btnradio3">Serviço</label>
+                    
                 </div>
             </div>
 
