@@ -1,15 +1,8 @@
-:root {
-    font-family: Poppins;
+.body {
+    font-family: Poppins, sans-serif;
+    overflow: scroll;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    font-family: Poppins;
-}
-
-
-/* Filtrar Vagas */
 
 /* Estilo para a Navbar */
 #navbar-pagina1, #navbar-pagina2 {
@@ -39,40 +32,77 @@
     text-align: center;
 }
 
-
-/* localizacao  */
-.localizacao {
-    max-height: 100px;
-    overflow: scroll;
-}
-
+/* Filtrar Vagas   */
 /* categoria  */
-.categoria {
+#categorias .label-title {
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+
+  /* tipo de trabalho  */
+#tipodetrabalho {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+  
+  #tipodetrabalho .label-title {
+    margin-bottom: 10px;
+  }
+  
+  #tipodetrabalho .checkbox-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  #tipodetrabalho .checkbox-container label {
+    padding: 10px;
+    margin: 0 10px;
+    flex: 1;
+    text-align: center;
+  }
+  
+  /* botão de busca  */
+  .btn-check {
+    display: none;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc
+  }
+
+  .btn {
+    width: 100%;
+  }
+  
+/* localizacao  */
+#localizacao {
     max-height: 100px;
-    overflow: scroll;
 }
 
 /* range  */
 
 .range-container {
     position: relative;
-    width: 100%;
     margin-top: 20px;
 }
 
 .slider-wrapper {
     position: relative;
-    width: 100%;
 }
 
 .custom-range {
     -webkit-appearance: none;
     width: 100%;
     height: 8px;
-    background: transparent;
-    position: absolute;
-    pointer-events: none;
-    z-index: 3;
+    background: #ddd;
+    border-radius: 5px;
+    pointer-events: all;
 }
 
 .custom-range::-webkit-slider-thumb {
@@ -81,44 +111,31 @@
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background: #000000;
+    background: #000;
     cursor: pointer;
-    z-index: 2;
-    position: relative;
 }
 
 .custom-range::-moz-range-thumb {
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background: #000000;
+    background: #000;
     cursor: pointer;
-    z-index: 2;
-    position: relative;
-}
-
-.slider-track {
-    position: absolute;
-    width: 100%;
-    height: 8px;
-    background: #ddd;
-    border-radius: 5px;
-    top: 50%;
-    transform: translateY(-50%);
 }
 
 .slider-fill {
     position: absolute;
     height: 8px;
-    background: #000000;
+    background: #000; 
     border-radius: 5px;
     top: 50%;
     transform: translateY(-50%);
     z-index: 1;
+    width: 0; /* Inicia com largura 0 */
 }
 
 .range-value {
-    margin-top: 20px;
+    margin-top: 10px;
     font-size: 16px;
     font-weight: bold;
     background-color: #ffffff;
@@ -133,13 +150,13 @@
 
 /* Estilo para a barra de navegação */
 #navbar-pagina2 {
-    margin-bottom: 1rem; /* Espaçamento inferior para a navbar */
+    margin-bottom: 1rem; 
 }
 
 #navbar-pagina2-content {
     display: flex;
-    align-items: center; /* Alinha os itens verticalmente no centro */
-    justify-content: space-between; /* Distribui o espaço entre os itens */
+    align-items: center; 
+    justify-content: space-between;
     
 }
 
@@ -179,26 +196,57 @@
     font-size: 1.5rem; /* Ajuste o tamanho conforme necessário */
 }
 
-/* Estilo do botão de favorito */
+/* Botão de favorito  */
 .favorite-btn {
-    border: none;
     background: none;
+    border: none;
     cursor: pointer;
-    outline: none;
-    display: flex;
-    align-items: center;
-    padding: 0;
-    font-size: 1.5rem; /* Tamanho do ícone */
-    color: #ccc; /* Cinza claro inicial */
-    transition: color 0.3s ease; /* Transição suave para a cor */
+    transition: color 0.3s; /* Transição suave de cor */
 }
 
-/* Efeito de hover */
-.favorite-btn:hover {
-    color: #666; /* Cinza mais escuro ao passar o mouse */
+.heart-icon {
+    fill: lightgray; /* Cor inicial do ícone (cinza claro) */
+    transition: fill 0.3s; /* Transição suave de preenchimento */
 }
 
-/* Estilo para o coração ativo (favoritado) */
-.favorite-btn.active {
-    color: #000; /* Preto quando favoritado */
+.favorite-btn.active .heart-icon {
+    fill: black; /* Cor quando favoritado (preto) */
 }
+
+.favorite-btn:hover .heart-icon {
+    fill: darkgray; /* Cor ao passar o mouse (cinza escuro) */
+}
+
+
+    /* Notificações  */
+
+
+    .check-box {
+        display: none; /* Oculta o checkbox original */
+    }
+    
+    .check-box + label {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%; /* Formato circular */
+        border: 2px solid black; /* Cor da borda */
+        display: inline-block;
+        position: relative;
+        cursor: pointer;
+        margin-left: 8px; /* Adiciona um espaço à esquerda do checkbox */
+    }
+    
+    .check-box:checked + label {
+        background-color: black; /* Cor de fundo quando marcado */
+    }
+    
+    .check-box:checked + label::after {
+        content: '✓'; /* Sinal de check */
+        color: white;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); /* Centraliza o sinal */
+        font-size: 14px; /* Tamanho do sinal */
+    }
+    

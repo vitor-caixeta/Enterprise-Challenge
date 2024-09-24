@@ -1,21 +1,21 @@
 // Navbar principal 
-document.addEventListener('DOMContentLoaded', function() {
-    const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
-    
-    navLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            // Remove 'active' class from all links
-            navLinks.forEach(link => link.classList.remove('active'));
-            // Add 'active' class to the clicked link
-            this.classList.add('active');
-        });
+document.addEventListener('DOMContentLoaded', function () {
+    // Para o dropdown "Mais Opções"
+    var dropdownToggle = document.querySelector('.dropdown-toggle');
+    dropdownToggle.addEventListener('click', function (event) {
+      event.preventDefault();
+      var dropdownMenu = this.nextElementSibling;
+      dropdownMenu.classList.toggle('show');
     });
 
-    // Optional: Initialize the first link as active (if needed)
-    if (navLinks.length > 0) {
-        navLinks[0].classList.add('active');
-    }
-});
+    // Para o collapse da navbar em telas menores
+    var navbarToggler = document.querySelector('.navbar-toggler');
+    navbarToggler.addEventListener('click', function () {
+      var navbarCollapse = document.getElementById('navbarNavDropdown');
+      navbarCollapse.classList.toggle('show');
+    });
+  });
+
 
 // navbar da pagina 
 document.addEventListener('DOMContentLoaded', () => {
@@ -28,81 +28,57 @@ document.addEventListener('DOMContentLoaded', () => {
         window.history.back();
     });
 
+    
 // Gravador 
 
-document.addEventListener('DOMContentLoaded', () => {
-    const searchForm = document.getElementById('search-form');
-    const searchInput = document.getElementById('search-input');
-    const microphoneButton = document.getElementById('microphone-button');
+const microphoneButton = document.getElementById('microphone-button');
+const searchInput = document.getElementById('search-input');
+let recognition;
+let isRecognizing = false; // Variável para controlar o estado do reconhecimento
 
-    let isRecording = false;
-    let mediaRecorder;
-    let audioChunks = [];
+// Verifica se o navegador suporta a Web Speech API
+if ('webkitSpeechRecognition' in window) {
+    recognition = new webkitSpeechRecognition();
+    recognition.continuous = false; // Não grava continuamente
+    recognition.interimResults = false; // Não mostra resultados intermediários
+    recognition.lang = 'pt-BR'; // Define o idioma para português do Brasil
 
-    // Função para realizar a pesquisa de texto
-    function performTextSearch(query) {
-        console.log('Pesquisa por texto:', query);
-        // Aqui você pode processar a pesquisa
-        // Exemplo: enviar a consulta para o servidor
-    }
+    recognition.onstart = function() {
+        console.log('Gravação iniciada...');
+        isRecognizing = true; // Marca que o reconhecimento está em andamento
+    };
 
-    // Função para iniciar e parar a gravação de voz
-    async function toggleVoiceRecording() {
-        console.log('Botão do microfone clicado. Estado de gravação:', isRecording);
-        if (isRecording) {
-            console.log('Parando a gravação.');
-            mediaRecorder.stop();
-            microphoneButton.innerHTML = `
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 1a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3zm-5 10a1 1 0 0 1 2 0v1a5 5 0 1 0 10 0v-1a1 1 0 0 1 2 0v1a7 7 0 0 1-14 0v-1z"/>
-                    <path d="M12 22a1 1 0 0 1-1-1v-2a1 1 0 0 1 2 0v2a1 1 0 0 1-1 1z"/>
-                </svg>
-            `;
+    recognition.onresult = function(event) {
+        const transcript = event.results[0][0].transcript; // Captura o texto reconhecido
+        searchInput.value = transcript; // Preenche o input com o texto
+        console.log('Texto reconhecido: ' + transcript);
+    };
+
+    recognition.onerror = function(event) {
+        console.error('Erro no reconhecimento: ' + event.error);
+    };
+
+    recognition.onend = function() {
+        console.log('Gravação encerrada.');
+        isRecognizing = false; // Marca que o reconhecimento foi encerrado
+    };
+
+    microphoneButton.addEventListener('click', function() {
+        console.log('Botão de microfone clicado.');
+        if (!isRecognizing) { // Verifica se não está reconhecendo
+            recognition.start(); // Inicia a gravação
         } else {
-            console.log('Iniciando a gravação.');
-            try {
-                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-                mediaRecorder = new MediaRecorder(stream);
-                mediaRecorder.start();
-                microphoneButton.innerHTML = `
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 1a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3zm-5 10a1 1 0 0 1 2 0v1a5 5 0 1 0 10 0v-1a1 1 0 0 1 2 0v1a7 7 0 0 1-14 0v-1z"/>
-                        <path d="M12 22a1 1 0 0 1-1-1v-2a1 1 0 0 1 2 0v2a1 1 0 0 1-1 1z"/>
-                    </svg>
-                `;
-                mediaRecorder.ondataavailable = event => {
-                    audioChunks.push(event.data);
-                    console.log('Dados de áudio disponíveis:', event.data);
-                };
-                
-                mediaRecorder.onstop = () => {
-                    const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
-                    audioChunks = [];
-                    const audioUrl = URL.createObjectURL(audioBlob);
-                    // Aqui você pode enviar o áudio para um servidor ou reproduzi-lo
-                    // Exemplo: new Audio(audioUrl).play();
-                    console.log('Gravação concluída. URL do áudio:', audioUrl);
-                };
-            } catch (error) {
-                console.error('Erro ao acessar o microfone:', error);
-            }
-        }
-        isRecording = !isRecording;
-    }
-
-    // Adiciona o evento de clique para o botão do microfone
-    microphoneButton.addEventListener('click', toggleVoiceRecording);
-
-    // Adiciona o evento de submit para o formulário
-    searchForm.addEventListener('submit', (event) => {
-        event.preventDefault(); // Previne o envio padrão do formulário
-        const searchQuery = searchInput.value.trim();
-        if (searchQuery) {
-            console.log('Consulta de pesquisa enviada:', searchQuery);
-            performTextSearch(searchQuery);
-        } else {
-            console.log('Campo de pesquisa vazio.');
+            console.log('Reconhecimento já está em andamento.'); // Mensagem de aviso
         }
     });
-});
+} else {
+    console.error('Web Speech API não é suportada neste navegador.');
+    microphoneButton.disabled = true; // Desabilita o botão se a API não for suportada
+}
 
+
+// Botão Veja Mais 
+document.getElementById('vejaMaisBtn').addEventListener('click', function() {
+    window.location.href = '#'; 
+});
+});

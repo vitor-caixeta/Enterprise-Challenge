@@ -1,21 +1,20 @@
 // Navbar principal 
-document.addEventListener('DOMContentLoaded', function() {
-    const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
-    
-    navLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            // Remove 'active' class from all links
-            navLinks.forEach(link => link.classList.remove('active'));
-            // Add 'active' class to the clicked link
-            this.classList.add('active');
-        });
+document.addEventListener('DOMContentLoaded', function () {
+    // Para o dropdown "Mais Opções"
+    var dropdownToggle = document.querySelector('.dropdown-toggle');
+    dropdownToggle.addEventListener('click', function (event) {
+      event.preventDefault();
+      var dropdownMenu = this.nextElementSibling;
+      dropdownMenu.classList.toggle('show');
     });
 
-    // Optional: Initialize the first link as active (if needed)
-    if (navLinks.length > 0) {
-        navLinks[0].classList.add('active');
-    }
-});
+    // Para o collapse da navbar em telas menores
+    var navbarToggler = document.querySelector('.navbar-toggler');
+    navbarToggler.addEventListener('click', function () {
+      var navbarCollapse = document.getElementById('navbarNavDropdown');
+      navbarCollapse.classList.toggle('show');
+    });
+  });
 
 // navbar da pagina 
 
@@ -32,19 +31,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Funcionalidade do link para o perfil da empresa
-    profileLink.addEventListener('click', (event) => {
-        console.log('Navegando para o perfil da empresa.');
-        // Aqui você pode adicionar lógica adicional, se necessário
-    });
+    document.getElementById('perfilambev').addEventListener('click', function(event) {
+        event.preventDefault(); // Impede o comportamento padrão do link
+    
+        // Exibe uma mensagem no console ao clicar no ícone
+        console.log('O perfil da empresa não está disponível no projeto.');
+    });    
 });
 
 
 // Botão de Favorito
-// Seleciona o botão de favorito
 const favoriteBtn = document.getElementById('favorite-btn');
 
-// Adiciona um ouvinte de eventos para o clique
-favoriteBtn.addEventListener('click', function() {
-    // Alterna a classe 'active' para o botão
-    this.classList.toggle('active');
+favoriteBtn.addEventListener('click', () => {
+    favoriteBtn.classList.toggle('active'); // Adiciona ou remove a classe 'active'
 });
+
+// Botão de Aplicar 
+document.getElementById('aplicarBtn').addEventListener('click', function() {
+    // Ação a ser executada ao clicar no botão "Aplicar"
+    console.log('Você se inscreveu com sucesso!'); 
+});
+

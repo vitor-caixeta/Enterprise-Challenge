@@ -17,24 +17,24 @@ console.log (campos);
 
 
 // Navbar principal 
-document.addEventListener('DOMContentLoaded', function() {
-    const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
-    
-    navLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            // Remove 'active' class from all links
-            navLinks.forEach(link => link.classList.remove('active'));
-            // Add 'active' class to the clicked link
-            this.classList.add('active');
-        });
+document.addEventListener('DOMContentLoaded', function () {
+    // Para o dropdown "Mais Opções"
+    var dropdownToggle = document.querySelector('.dropdown-toggle');
+    dropdownToggle.addEventListener('click', function (event) {
+      event.preventDefault();
+      var dropdownMenu = this.nextElementSibling;
+      dropdownMenu.classList.toggle('show');
     });
 
-    // Optional: Initialize the first link as active (if needed)
-    if (navLinks.length > 0) {
-        navLinks[0].classList.add('active');
-    }
-});
+    // Para o collapse da navbar em telas menores
+    var navbarToggler = document.querySelector('.navbar-toggler');
+    navbarToggler.addEventListener('click', function () {
+      var navbarCollapse = document.getElementById('navbarNavDropdown');
+      navbarCollapse.classList.toggle('show');
+    });
+  });
 
+  
 // navbar da pagina 
 document.addEventListener('DOMContentLoaded', () => {
     const backButton = document.getElementById('backButton');
@@ -138,56 +138,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Salário 
 
-// botão de range 
-document.addEventListener('DOMContentLoaded', () => {
-    const rangeMin = document.getElementById('rangeMin');
-    const rangeMax = document.getElementById('rangeMax');
-    const minValue = document.getElementById('minValue');
-    const maxValue = document.getElementById('maxValue');
-    const sliderFill = document.querySelector('.slider-fill');
+const rangeMin = document.getElementById('rangeMin');
+const rangeMax = document.getElementById('rangeMax');
+const minValue = document.getElementById('minValue');
+const maxValue = document.getElementById('maxValue');
 
-    const updateSlider = () => {
-        let min = parseInt(rangeMin.value);
-        let max = parseInt(rangeMax.value);
+function updateValues() {
+    minValue.textContent = `R$ ${parseInt(rangeMin.value).toLocaleString('pt-BR')},00`;
+    maxValue.textContent = `R$ ${parseInt(rangeMax.value).toLocaleString('pt-BR')},00`;
+}
 
-        // Previne que os ranges se cruzem
-        if (min > max) {
-            min = max;
-            rangeMin.value = min;
-        }
-        if (max < min) {
-            max = min;
-            rangeMax.value = max;
-        }
+// Adiciona event listeners para atualizar valores ao deslizar
+rangeMin.addEventListener('input', updateValues);
+rangeMax.addEventListener('input', updateValues);
 
-        // Atualiza os valores de exibição
-        minValue.textContent = `R$ ${min.toLocaleString('pt-BR')},00`;
-        maxValue.textContent = `R$ ${max.toLocaleString('pt-BR')},00`;
+// Chama a função uma vez para inicializar os valores
+updateValues();
 
-        // Calcula a posição percentual dos controles
-        const minPercent = (min - rangeMin.min) / (rangeMax.max - rangeMin.min) * 100;
-        const maxPercent = (max - rangeMin.min) / (rangeMax.max - rangeMin.min) * 100;
-
-        // Atualiza a posição da área preenchida entre os dois controles
-        sliderFill.style.left = `${minPercent}%`;
-        sliderFill.style.width = `${maxPercent - minPercent}%`;
-    };
-
-    // Escuta os eventos de movimento nos controles
-    rangeMin.addEventListener('input', updateSlider);
-    rangeMax.addEventListener('input', updateSlider);
-
-    // Inicializa o slider com os valores padrões
-    updateSlider();
-});
 
 
 // Botão Buscar 
 
 document.addEventListener('DOMContentLoaded', () => {
-    const buscarBtn = document.getElementById('buscarBtn');
+    const buscarBtn = document.getElementById('favoriteBtn');
 
-    buscarBtn.addEventListener('click', () => {
+    favoriteBtn.addEventListener('click', () => {
         console.log('Botão de buscar foi clicado.');
     });
 });
