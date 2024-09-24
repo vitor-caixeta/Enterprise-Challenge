@@ -1,21 +1,12 @@
 // Navbar principal 
 document.addEventListener('DOMContentLoaded', function () {
-    // Para o dropdown "Mais Opções"
-    var dropdownToggle = document.querySelector('.dropdown-toggle');
-    dropdownToggle.addEventListener('click', function (event) {
-      event.preventDefault();
-      var dropdownMenu = this.nextElementSibling;
-      dropdownMenu.classList.toggle('show');
-    });
-
     // Para o collapse da navbar em telas menores
     var navbarToggler = document.querySelector('.navbar-toggler');
     navbarToggler.addEventListener('click', function () {
-      var navbarCollapse = document.getElementById('navbarNavDropdown');
-      navbarCollapse.classList.toggle('show');
+        var navbarCollapse = document.getElementById('navbarNavDropdown');
+        navbarCollapse.classList.toggle('show');
     });
-  });
-
+});
 
 // navbar da pagina 
 document.addEventListener('DOMContentLoaded', () => {
@@ -75,10 +66,4 @@ if ('webkitSpeechRecognition' in window) {
     console.error('Web Speech API não é suportada neste navegador.');
     microphoneButton.disabled = true; // Desabilita o botão se a API não for suportada
 }
-
-
-// Botão Veja Mais 
-document.getElementById('vejaMaisBtn').addEventListener('click', function() {
-    window.location.href = '#'; 
-});
 });

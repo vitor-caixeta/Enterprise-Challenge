@@ -1,35 +1,23 @@
 // Navbar principal 
 document.addEventListener('DOMContentLoaded', function () {
-    // Para o dropdown "Mais Opções"
-    var dropdownToggle = document.querySelector('.dropdown-toggle');
-    dropdownToggle.addEventListener('click', function (event) {
-      event.preventDefault();
-      var dropdownMenu = this.nextElementSibling;
-      dropdownMenu.classList.toggle('show');
-    });
-
     // Para o collapse da navbar em telas menores
     var navbarToggler = document.querySelector('.navbar-toggler');
     navbarToggler.addEventListener('click', function () {
-      var navbarCollapse = document.getElementById('navbarNavDropdown');
-      navbarCollapse.classList.toggle('show');
+        var navbarCollapse = document.getElementById('navbarNavDropdown');
+        navbarCollapse.classList.toggle('show');
     });
-  });
+});
 
+ // Recupera o nome do cliente do localStorage e atualiza o conteúdo do elemento
+ document.addEventListener('DOMContentLoaded', function() {
+    const clientName = localStorage.getItem('clientName');
+    const greetingElement = document.getElementById('greeting');
+    if (clientName) {
+        greetingElement.textContent = `Olá, ${clientName}`;
+    }
+});
 
-// navbar da pagina 
-document.addEventListener('DOMContentLoaded', () => {
-    const backButton = document.getElementById('backButton');
-    const profileLink = document.getElementById('profileLink');
-
-    // Funcionalidade do botão de voltar
-    backButton.addEventListener('click', (event) => {
-        event.preventDefault();  
-        window.history.back();
-    });
-
-    
-// Gravador 
+// Pesquisa e Gravador 
 
 const microphoneButton = document.getElementById('microphone-button');
 const searchInput = document.getElementById('search-input');
@@ -76,9 +64,6 @@ if ('webkitSpeechRecognition' in window) {
     microphoneButton.disabled = true; // Desabilita o botão se a API não for suportada
 }
 
-
-// Botão Veja Mais 
-document.getElementById('vejaMaisBtn').addEventListener('click', function() {
-    window.location.href = '#'; 
-});
-});
+function toggleFavorite(button) {
+    button.classList.toggle('active'); // Alterna a classe 'active' ao clicar
+}

@@ -13,11 +13,51 @@ h1 {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
+    position: relative; 
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
+.vaga-header {
+    display: flex;
+    justify-content: space-between; /* Alinha o h5 e o botão nas extremidades */
+    align-items: center; /* Alinha verticalmente */
+}
 .vaga-card h5 {
     font-weight: bold;
 }
+
+.vaga-card-link {
+    text-decoration: none; /* Remove o sublinhado */
+    color: black; /* Define a cor do texto como preto */
+}
+
+.vaga-card-link:hover {
+    opacity: 0.8; /* Efeito de hover */
+}
+
+/* Botão de favorito  */
+.favorite-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: color 0.3s; 
+}
+
+.heart-icon {
+    fill: lightgray; 
+    transition: fill 0.3s; 
+}
+
+.favorite-btn.active .heart-icon {
+    fill: black; 
+}
+
+.favorite-btn:hover .heart-icon {
+    fill: darkgray; 
+}
+
 
 .vaga-info {
     display: flex;
@@ -40,16 +80,15 @@ h1 {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.search-bar {
-    display: flex;
-    align-items: center;
+
+.mentoria-link {
+    text-decoration: none; /* Remove o sublinhado */
+    color: black; /* Define a cor do texto como preto */
 }
 
-.search-bar input {
-    width: 250px;
-    margin-right: 10px;
+.mentoria-link:hover {
+    opacity: 0.8; /* Efeito de hover */
 }
 
-hr {
-    margin: 30px 0;
-}
+
+
