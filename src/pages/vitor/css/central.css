@@ -1,30 +1,26 @@
-#navbar-pagina-1 {
-    display: flex;
-    align-items: center;
-    justify-content: center; 
-    padding: 0.5rem 1rem; 
-    position: relative;
+.dropdown {
+    overflow: hidden;
+    max-height: 60px; 
+    transition: max-height 0.5s ease, padding 0.5s ease; /
 }
 
-#navbar-pagina-1.container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between; 
-    width: 100%;
+.dropdown-content {
+    display: block;
+    padding-top: 10px;
 }
 
-#navbar-pagina-1 a {
-    position: absolute; 
-    left: 0; 
+.hidden {
+    display: none; 
 }
 
-#navbar-pagina-1 h2 {
-    margin: 0;
-    flex: 1; 
-    text-align: center;
+.dropdown.expanded {
+    max-height: 300px; 
+    padding-bottom: 15px; 
 }
+
 
 /* FAQ E SUPORTE */
+
 .tabs-container {
     display: flex;
     justify-content: space-evenly;
@@ -68,31 +64,4 @@
     background-color: lightgray; 
 }
 
-
-/* Estilo básico do dropdown */
-.dropdown {
-    overflow: hidden;
-    max-height: 60px;
-    transition: max-height 0.5s ease, padding 0.5s ease;
-    background-color: #D1D5DB; /* Cor de fundo desejada */
-}
-
-/* Conteúdo do dropdown que será mostrado ao expandir */
-.dropdown-content {
-    display: block;
-    padding-top: 10px;
-}
-
-/* Classe que oculta o conteúdo inicialmente */
-.hidden {
-    max-height: 0;
-    padding-bottom: 0;
-    transition: max-height 0.5s ease, padding 0.5s ease;
-}
-
-/* Classe que expande o dropdown */
-.dropdown.expanded {
-    max-height: 300px; /* Ajuste conforme necessário */
-    padding-bottom: 15px;
-}
 
